@@ -24,8 +24,11 @@ Note: This idea and much of the code is adapted heavily from a part of Colin Raf
 2. [Jang dataset](http://www.music-ir.org/mirex/wiki/2016:MIREX2016_Results): for fine-tuning the network weights to produce similar embeddings for ground truth audio and hummed queries against that.
 
 ## Requirements
-
 - Theano
 - Lasagne
 - [pse](https://github.com/craffel/pse)
+- deepdish
+- librosa
+- traceback
+- pretty_midi
 
