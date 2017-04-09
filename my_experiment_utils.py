@@ -12,11 +12,15 @@ import sys
 import pse
 import theano
 
-
+import feature_extraction
 
 N_BITS = 32
 OUTPUT_DIM = 128
 N_HIDDEN = 2048
+PSE_BEST_MODEL = "models/pse_best_model.h5"
+CVR_BEST_MODEL = "models/cvr_best_model.h5"
+QBSH_BEST_MODEL = "models/qbsh_best_model.h5"
+
 
 #Best model hyperparams:
 BEST_HYPERPARAMETERS = {'learning_rate': 9.7289563945014042e-05,
@@ -25,8 +29,32 @@ BEST_HYPERPARAMETERS = {'learning_rate': 9.7289563945014042e-05,
  'n_conv': 0,
  'negative_importance': 5.613532235406355,
  'negative_threshold': 0.33213199035922386,
- 'network': 'pse_big_filter'}
+ 'network': 'pse_big_filter',
+ 'downsample_frequency' : True,
+}
 
+def load_network(filetype, hyperparams, params_file):
+    # Building the network
+    build_network = build_pse_net_big_filter
+    layers = build_network(
+     (None, 1, None, feature_extraction.N_NOTES),
+     np.zeros((1, feature_extraction.N_NOTES), theano.config.floatX),
+     np.ones((1, feature_extraction.N_NOTES), theano.config.floatX),
+     hyperparams['downsample_frequency'],
+     hyperparams['n_attention'], hyperparams['n_conv'])
+    # Loading params from disk
+    network_params = deepdish.io.load(params_file)
+    if "PSE" in params_file:
+        if filetype == 'mp3':
+            lasagne.layers.set_all_param_values(layers[-1], network_params['X'])
+        elif filetype == 'mid':
+            lasagne.layers.set_all_param_values(layers[-1], network_params['Y'])
+    #else:
+    #    lasagne.layers.set_all_param_values(layers[-1], network_params)        
+    # Compile function for computing the output of the network
+    compute_output = theano.function([layers[0].input_var], 
+        lasagne.layers.get_output(layers[-1], deterministic=True))
+    return layers, compute_output
 
 def _build_input(input_shape, input_mean, input_std):
     layers = [lasagne.layers.InputLayer(shape=input_shape)]

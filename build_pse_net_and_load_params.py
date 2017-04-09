@@ -13,9 +13,8 @@ import traceback
 import pretty_midi
 
 hyperparams = my_experiment_utils.BEST_HYPERPARAMETERS
-hyperparams['downsample_frequency'] = True
 
-def create_network(filetype, hyperparams):
+def create_network(filetype, hyperparams, params_file):
     # Building the network
     build_network = my_experiment_utils.build_pse_net_big_filter
     layers = build_network(
@@ -25,7 +24,7 @@ def create_network(filetype, hyperparams):
      hyperparams['downsample_frequency'],
      hyperparams['n_attention'], hyperparams['n_conv'])
     # Loading params from disk
-    network_params = deepdish.io.load('best_model.h5')
+    network_params = deepdish.io.load(params_file)
     if filetype == 'mp3':
       lasagne.layers.set_all_param_values(layers[-1], network_params['X'])
     else:
