@@ -1,0 +1,32 @@
+Epoch 0/1000: Batch 0/274: Batch loss 19.9977836612.
+Epoch 0/1000: Batch 10/274: Batch loss 19.9989810173.
+Epoch 0/1000: Batch 20/274: Batch loss 19.998256814.
+Epoch 0/1000: Batch 30/274: Batch loss 19.9980066761.
+Epoch 0/1000: Batch 40/274: Batch loss 19.9966829272.
+Epoch 0/1000: Batch 50/274: Batch loss 19.9959938535.
+Epoch 0/1000: Batch 60/274: Batch loss 19.9899636998.
+Epoch 0/1000: Batch 70/274: Batch loss 19.9980145433.
+Epoch 0/1000: Batch 80/274: Batch loss 19.9819031727.
+Epoch 0/1000: Batch 90/274: Batch loss 19.9820014594.
+Epoch 0/1000: Batch 100/274: Batch loss 19.9862810978.
+Epoch 0/1000: Batch 110/274: Batch loss 20.0089145155.
+Epoch 0/1000: Batch 120/274: Batch loss 19.9957301183.
+Epoch 0/1000: Batch 130/274: Batch loss 20.0078845991.
+Epoch 0/1000: Batch 140/274: Batch loss 19.9926233916.
+Epoch 0/1000: Batch 150/274: Batch loss 19.9859596327.
+Epoch 0/1000: Batch 160/274: Batch loss 19.9541851855.
+Epoch 0/1000: Batch 170/274: Batch loss 19.9843226989.
+Epoch 0/1000: Batch 180/274: Batch loss 19.9402924257.
+Epoch 0/1000: Batch 190/274: Batch loss 19.907001886.
+Epoch 0/1000: Batch 200/274: Batch loss 19.7757617604.
+Epoch 0/1000: Batch 210/274: Batch loss 19.7359408147.
+Epoch 0/1000: Batch 220/274: Batch loss 19.7873427046.
+Epoch 0/1000: Batch 230/274: Batch loss 19.6982302677.
+Epoch 0/1000: Batch 240/274: Batch loss 19.8450027655.
+Epoch 0/1000: Batch 250/274: Batch loss 19.2310841409.
+Epoch 0/1000: Batch 260/274: Batch loss 19.8724131336.
+Epoch 0/1000: Batch 270/274: Batch loss 18.5964793017.
+Traceback (most recent call last):
+  File "parameter_search_csr.py", line 112, in <module>
+    del input_data, batch_sampled, xbatch
+NameError: name 'input_data' is not defined
