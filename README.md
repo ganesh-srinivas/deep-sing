@@ -1,4 +1,4 @@
-# Deep Sing (incomplete!)
+# Deep Sing (only Cover Song Network is ready!)
 ## A deep learning solution to the Query by Singing/Humming (QBSH) 
 ## problem in Music Information Retrieval
 
@@ -8,7 +8,12 @@ This code (in-progress) implements the following solution:
  neural network is trained using a triplet loss function on a subset of the 
  Second Hand Songs (SHS) dataset. The loss function encourages the network 
  to produce similar (in terms of pairwise distance) embeddings for a song 
- and its cover, and dissimilar embeddings for unrelated songs.
+ and its cover, and dissimilar embeddings for unrelated songs. Here is the 
+ distance distribution for matching (song and cover, cover one and cover two,
+ etc.) and non-matching pairs:
+ 
+![](output/distance_distribution_csr.png)
+
 
 2. Transfer learning is performed after this: weights are learned for doing 
  cover song recognition, and then the same network is trained a little 
@@ -19,7 +24,7 @@ Note: This idea and much of the code is adapted heavily from a part of Colin Raf
 
 
 ## Datasets
-1. MP3 preview clips for a subset of the [Second Hand Songs](https://labrosa.ee.columbia.edu/millionsong/secondhand) dataset: for training the convnet to produce embeddings for cover song recognition.
+1. MP3 preview clips for the [Second Hand Songs](https://labrosa.ee.columbia.edu/millionsong/secondhand) dataset: for training the convnet to produce embeddings for cover song recognition.
 
 2. [Jang dataset](http://www.music-ir.org/mirex/wiki/2016:MIREX2016_Results): for fine-tuning the network weights to produce similar embeddings for ground truth audio and hummed queries against that.
 
